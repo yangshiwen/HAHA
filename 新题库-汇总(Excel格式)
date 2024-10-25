@@ -1,0 +1,171 @@
+CCE聚合级别太高（比如聚合级别16），会造成DCI漏检，推荐自适应；,F,,,,,
+华为基站中，当关闭了PDCCH ratematch功能时，PDCCH的频域为全带宽。,T,,,,,
+如果发现RANK一直保持一个很高的值没有变化且MCS很低，则有可能是RANK被固定，需要排查RANK参数。,T,,,,,
+RLC层实体分为UM，TM，AM实体，TM数据收发共用一个实体，UM和AM收发实体分开。,F,,,,,
+SSB波束扫描周期可以通过参数进行配置，默认20ms，在40ms内重复扫描2次，每轮扫描会在5ms内完成。,T,,,,,
+当采用VONR方案时，可以采用重定向的方案实现到VOLTE的互操作。,T,,,,,类似数据业务可以重定向，语音业务也可重定向，但业务中断时延较小，不会被用户感知到，但是建议尽量不要
+空闲态管理优先考虑可驻留在NR网络的UE尽可能驻留在NR网络中，因此建议频点优先级设置：NR>LTE,T,,,,,
+在规划AAU物理下倾角时，若覆盖受限，一般会选择最上层的CSI-RS波束进行小区边缘覆盖。,F,,,,,此处见规划或MassiveMIMO或覆盖优化部分：错误点CSI-RS波束？？还是最上层？是第二层
+干扰余量主要和拓扑结构以及邻区负荷两个因素相关。,T,,,,,
+华为采用U-net工具作为覆盖仿真工具。,T,,,,,
+UE-AMBR限制了UE的所有GBR以及Non-GBR Qos流提供的聚合速率。,F,,,,,Non-GBR
+映射到相同5G Qos Flow的所有报文都接受相同的转发处理（例如，调度策略，队列管理策略等）,T,,,,,
+5G中的RMSI包括了SIB1和SIB2两个广播消息。,F,,,,,解析：MSI=MIB+SIB1，RMSI即为SIB1
+5GC的哪些模块和P-CSCF网元有对接？,ABCD,SMF,UPF,AMF,PCF,从架构图上看可能只有BD，但是在与IMS交互过程中，另外两者也需要对接
+在VONR流程中，主叫侧IMS寻址被叫需要用到哪些网元？,ABD,I-CSCF,DNS,HSS,ENUM,
+以下哪些原因会导致DCI漏检？,ABD,覆盖差导致DCI漏检；,聚合级别太低会造成DCI漏检；,RSRP值太高，导致DCI漏检；,UE距离基站太近，导致DCI漏检,"信号质量好不是导致漏检的原因,聚集级别低会带来传输可靠性下降；
+C-UE功率过饱和漏检"
+"题目1：当使用DFT开环权进行业务，gNB会根据UE上报的RI来选择RANK，遵从如下规则？
+题目2：当PMI未上报，根据UE上报的RI来选择Rank，应该遵循以下哪些规则？",AD,UE CSI的RI为1，则当前使用RANK为1,UE CSI的RI为2-3，则当前使用RANK为3,UE CSI的RI为4-8，则当前使用RANK为3,UE CSI的RI为4-8，则当前使用RANK为4,UE CSI的RI为2-3，则当前使用RANK为3---错；解析：应为2
+关于权值自适应算法，以下描述正确的是哪些？,BC,相对于PMI，远点用户的SRS可以提升权值准确性，提升边缘用户的SINR，进而提升边缘用户的速率；,用户在SRS SINR较大时，选择基于SRS得到的BF权值；,在SRS SINR较小时，选择基于PMI的BF权值；,PMI和SRS对于所有用户，效果都是一样的，主要是根据信道容量来配置；,
+以下关于RANK的描述，正确的是哪些项？,AD,NLOS场景下更容易实现高RANK；,只要下行信道质量足够好，就一定可以达到RANK4；,LOS场景下更容易实现高RANK；,CSI-RS的端口数必须大于等于最大的RANK数,
+在华为基站中，以下哪些事件的测量上报可以触发系统内异频切换流程？,ABC,A3,A4,A5,A6,此题没有点4G还是5G，即使是5G也可能有基于频率优先级的A4，A5，基于覆盖的A3，A5，建议选ABC
+针对A1和A2事件参数，以下哪些在基于覆盖的异频切换场景和基于频率优先级的切换场景是共用的？,CD,A1 RSRP门限；,A2 RSRP门限；,A1A2时间迟滞；,A1A2幅度迟滞,
+网管系统的上报周期支持？Or 网管支持以下哪些项的5G指标上报周期？,CD,1ms,1s,15min,30min,（1min和5min网管也支持，但是仅仅少数KPI支持，出题争议较大，所以利用CD与AB差异性对比最为稳妥）还有60min
+PUCCH信道传输什么内容：,ABC,CSI（3I：CQI，PMI，RI）,SR（Scheduling Request）；,HARQ ACK/NACK,DCI,
+为了支持5G和4G的切换，5GC和EPC哪些网元必须要融合部署？,BCD,UPF和SGW,UPF和PGW-U,AMF和MME,SMF和PGW-C,存疑：C有时候被选中，可能把N26接口也当成融合的了
+5G功率控制目的是什么？,BCD,解决小区内部不同UE之间的干扰,补偿信道的路径损耗和阴影衰落,抑制5G同频小区间干扰,保证网络覆盖和容量需求,
+以下信道或信号可以进行静态功率控制的是哪些？,ABCD,PBCH,SS,PDCCH,TRS,
+以下哪些是3GPP针对NR新定义的传播模型？,BCD,SPM,Uma,Rma,Umi,
+以下哪些是5G TDD和FDD在链路预算环节的不同点？,BCD,FDD使用不同的传播模型；,低频FDD网络需要预留更高的干扰余量；,FDD通常不考虑Massive MIMO赋型增益；,FDD需要考虑天线馈线损耗,
+以下关于小区平均速率仿真的描述，正确的是？,ABD,仿真时需要考虑用户分布；,速率仿真前必须要先确定覆盖半径；,速率仿真和覆盖半径没有关系；,仿真时需要假设用户做full buffer业务,
+对于射线跟踪模型，说法正确的是哪些项？,AC,射线跟踪模型有更高的仿真准确性；,射线跟踪模型仿真效率更高；,射线跟踪模型考虑多径信号叠加增益；,射线跟踪模型仿真计算时需要采用特殊的传播模型,
+以下哪些属于5G的GBR的参数：,AB,GFBR,MFBR,Session-AMBR,UE-AMBR,
+ARP具有什么特性？,AB,抢占性,被抢占性,,,
+NSA场景下，安全算法有那些？,ACD,AES,量子加密,Zuc,Snow3G,
+用户接入LTE后，要满足以下哪些项LTE才可以正常下发5G B1测量控制？,ABD,LTE侧NSA开关、NR邻频点配置正确；,UE能力上报中包含R15的UE能力；,LTE主控版为UMPTa  ,核心网未禁止该用户的NSA能力,解析，对主控板版本有要求，但是具体哪个版本不清楚，只是理解C里面版本过低，所以不支持，不选
+以下哪些定时器和计数器在SA和NSA组网中都会使用到？ ,ABC,T310,N311,N310,T311,解析：T310：UE检测到N310个下行失步指示时触发；N310：下行同步指示；T311：UE发起RRC重建启动，到选到合适的NR小区停止.T311定时器NSA没有。
+在Option3X架构下，eNB发起的SgNB Addition Request消息可能会携带哪些网元的IP地址？,AC,S-GW IP,P-GW IP,eNodeB IP,NodeB IP,BC
+5G-GUTI中的AMF ID包含以下哪些字段？,ABC,AMF Region ID,AMF Set ID,AMF Pointer,AMF Group ID,
+在5G测量配置消息中的测量目标信元，会携带哪些参数？,ABC,服务小区偏置,SMTC,SSB频点,小区频点,SMTC:基于SSB的测量定时配置
+NR中UE进行随机接入会用到哪些信道？,ABCD,PRACH,PDCCH,PDSCH,PUSCH,
+系统按照UE上报的以下哪个参数自动选择传输用户时所用的MCS？,B,原始的MCS,CQI,RSRP,SINR,
+当采用256QAM调制时，下行最高MCS为？,B,26,27,28,29,256QAM最大初传MCS阶数
+在5G异频重选流程中，终端通过哪个系统消息获取异频重选优先级：,C,SIB2,SIB3,SIB4,SIB5,SIB2当前服务小区的小区重选优先级，SIB3同频，SIB4异频，SIB5为异系统
+以下哪一项不可能是切换准备失败的原因？,D,目标小区资源不足,核心网异常,Xn链路异常,邻区漏配,
+关于NR系统性能指标测量，每次测量的结果关联到以下哪项？,C,多个特定的功能子集；,1个特定的测量对象；,多个特定的测量对象；,多个测量对象,解析，性能管理ppt原题选 1个特定的测量对象，但是有些地方选C，可以理解一个特定测量对象可能不止一个小区
+LTE网络通过以下哪个消息下发NR异频点的重选参数？,D,SIB14,SIB19,SIB20,SIB24,
+以下哪项信息，不是由PUCCH信道传输的？,D,CSI，包括CQI、PMI、RI等；,SR（Scheduling Request）；,"HARQ ACK/NACK,用于PDSCH上发送数据的HARQ确认；",DCI,
+不属于SA 5G RRC层的功能有那些？,D,系统消息下发,无线资源管理,移动性管理,加密和完整性保护,加密和完整性保护属于PDCP层功能
+SRS发送端口数，以下哪项是目前无法支持的？,D,1,2,4,8,
+以下哪一项功能不是由物理层进行处理的？,D,加扰,调制,RE映射,调度,
+5G安全流程中密钥的最大长度为多少？,C,64bit,128bit,256bit,512bit,"5G秘钥长度可以为128,256bit两种"
+5G-GUTI是由以下哪个设备进行分配的：,A,AMF,gNodeB,UPF,SMF,
+"关于PDCCH公共搜索空间，其最小的CCE数量是哪一项？
+或问：针对公共的PDCCH空间，其最小的CCE格式是哪种？",C,1CCE,2CCE,4CCE,8CCE,
+5G上行一共定义了多少个逻辑信道组？,C,4,6,8,10,协议规定了gNodeB支持8个逻辑信道分组
+以下哪个不是Coreset0可能的带宽？,D,24RB,48RB,96RB,192RB,解析如果考虑SSB，PDCCH的SCS均为30kHz的情况，仅选24，48，不选96
+PSS=1，SSS=2，那PCI=？,D,4,5,6,7,
+PUCCH的外环功控使用的是哪种测量指标？,C,功率谱密度,SINR,BLER,BER,
+以下哪项是网络仿真不必需的：,D,地图,工参,天线增益,RANK,
+以下关于上行（初传）调度错误的说法是哪个？,D,eff表示用户信道质量；,r表示UE的历史传输速率；,Υ(QCI)表示Non-GBR业务中，不同QCI级别对应的调度优先级的加权；,f(D)表示数据包在Buffer缓存中等待的时延,"考察上下行调度优先级公式中参数的差异点；
+解析：加权因子配置值越大，则调度优先级越高。上行没有f(D)这个参数，仅存在与下行。"
+UE-AMBR速率控制由以下哪个设备调度执行？,B,UE,gNodeB,UPF,AMF,
+在NSA接入过程中，如果gNB收到了“SgNB Addition Request”消息，但是没有回复任何消息，以下哪一个是可能的原因？,C,无线资源不足；,gNodeB检测到S1链路故障；,gNodeB检测到X2链路故障；,License资源不足,解析：此处的X2接口故障主要是指X2-C，因为X2-U链路故障会带来reject而不是不回复，见接入问题分析P24-26
+在NSA组网场景下，以下哪一类邻区无需规划？,C,5G小区之间的邻区；    ,4G小区到5G小区的邻区；,5G小区到4G小区的邻区；,4G小区之间的邻区,
+在NSA组网中，若在eNB侧配置的5G SSB频点和实际的不一致，会出现以下哪个问题？,C,UE随机接入失败；,gNB拒绝添加请求；,UE无法上报5G测量结果；,eNB无法下发NR的测量配置,
+eNB会通过以下哪项信令下发NR的测量控制，包括测量事件B1及相关门限，NR的绝对频点号等？,B,RRC_CONN_REQ,RRC_CONN_RECFG,RRC_CONN_RECFG_CMP,RRC_Meas_Report,
+在基于频率优先级的异频切换场景下，以下哪个事件测量报告用于触发异频测量,A,A1,A2,A3,A4,
+以下哪项事件，会触发基于覆盖的同频切换？,C,A1,A2,A3,A4,
+小区选择规则（又称S规则）中的Qrelevmin，是通过以下哪项获取的？,C,SRB1,SIB2,SIB1,MIB,
+如果5GC存在多个切片，由哪一个模块负责切片的选择？,D,NEF,NRF,AMF,NSSF,
+在PLMN选择流程中，以下哪类PLMN优先级最高？,A,RPLMN,EHPLMN,HPLMN,VPLMN,解析：RPLMN>EHPLMN>HPLMN>VPLMN
+以下哪一项不属于系统原因（N.Cell.Unavail.Dur.System)导致小区不可用？,C,射频单元收发通道故障,单板故障,MML操作闭塞小区,CPRI链路故障,
+（单选题）NSA DC的互调干扰避让方案是通过以下哪种调度机制进行避让NR的上控制信道和数据信道,A,时分,频分,码分,空分,不确定？？
+"（单选题）深度符号关断关闭的器件是哪个
+A  功放
+B  无线射频芯片  
+C  基带芯片  
+D  射频模块  ",B,,,,,
+"（单选题）两个基站之间做DC数据转发，要求时延
+小于多少
+A  10ms  
+B  20ms
+C  30ms  
+D  40ms",B,NSA DC数据面分流：X2/Xn接口数据面分流最大容忍时延为12ms。,,,,
+（单选题）在Opiton3x架构下，如果触发SgNB增加流程，那么在X2-U接口上最多会建立几条隧道,D,1,2,3,4,解释上下行分流，上下行转发
+PDCP的功能不包括哪个？,A,QoS流,加密,完整性保护,ROHC,
+由于NR中小区带宽非常宽，按照Synchronization Raster去盲检，会导致UE搜网速度非常慢，为此UE定义了channel Raster，终端会按照该步长进行小区SSB搜索。,B,正确,错误,,,
+同步栅格支持的大小包含哪些？,BCD,100KHZ,1200KHZ,1.44MHZ,17.28MHZ,
+5GC为UE建立PDU会话，会话内包含N个QoS流，该会话通过N3隧道传输，需要映射到多少N3隧道标识？,D,64,4,128,1,
+NR上行采用同步自适应重传。,B,正确,错误,,,
+网络侧可以给每个UE最多配置4个active BWP。,B,正确,错误,,,
+5G相比于4G精简了哪些物理信道？,AB,PHICH,PCFICH,PBCH,PDCCH,
+5G NR（TDD）支持哪些SSB Pattern？,ABC,CASE A,CASE B,CASE C,CASE D,CASE E
+5G规范里定义了哪些SSB Pattern？,ABCDE,CASE A,CASE B,CASE C,CASE D,CASE E
+SSB 在时域上占用多少个OFDM符号？,D,1,2,3,4,
+"时隙配比为4:1,30KHZ，CASE C,协议上最大可以支持8波束，实际可用多少个波束？",C,4,8,7,3,
+PDCCH传输的DCI不包含以下哪种信息？,A,携带MIB消息的调度信息,下行调度信息,上行调度信息,上行功控指示,
+PDCCH configSIB1中包含哪些信息？,ABD,coreset0的符号长度,coreset0的频域大小,SSB使用的SCS,coreset与SSB的频率偏置,
+coreset0中只能配置一个search space。,B,正确,错误,,,
+基站使用哪种标识用于唤醒inactive态UE。,B,P-RNTI,I-RNTI,C-RNTI,SI-RNTI,
+PDSCH 前置DMRS在Type A映射类型下，支持的固定符号位？,CD,0符号,1符号,2符号,3符号,
+一个小区可以有N个preamble序列，该序列可以由1个或者多个根序列生成，N最多是多少个？,B,63,64,16,8,
+可以通过什么技术改善无人机低空覆盖？,B,Numerology,Massive MIMO,,,
+无人机低空覆盖最大可以支持多大的高度？,C,100m,500m,1000m,6000m,
+5G取消了5M以下的小带宽，提供大带宽高速率。,A,正确,错误,,,
+PUCCH资源分配，描述正确的有？,ABD,SR必须是周期资源分配,CSI必须是周期资源分配,HARQ ACK/NACK必须周期资源分配,SR分配周期可以支持自适应分配,
+以下哪个是DFT-S-OFDM波形特有的物理层处理步骤？,C,Modulation,Scrambling,Transform Precoder,Layer mapping,
+iBLER是初始误块率，rBLER是残留误块率。,A,正确,错误,,,
+TDD时隙配比会影响到小区的覆盖能力、业务量、时延。,A,正确,错误,,,
+U-NET规划仿真时，使用的地图图层精确度必须至少满足？,B,10*10m,5*5m,15*15m,20*20m,
+为了使得干扰随机化的算法效益，5G PCI需要模3错开。,A,正确,错误,,,
+切换执行失败，有相关的原因值counter统计。,A,正确,错误,,,
+干扰余量主要和拓扑结构、小区负荷有关。,A,正确,错误,,,
+5G PCI规划原则有哪些？,ABC,相邻同频小区之间PCI不能相同,同频同PCI的复用距离尽可能远,"4/5G同站同覆盖,PCI可以配置一样",同频邻区需要满足PCI模40错开,
+在NSA组网，ENB向gnb发起Sgnb addition request消息中携带的IP地址有哪些？,AC,enb IP,gnb IP,SGW IP,UE IP,
+NR通过哪个消息下发4G的频点级重选参数信息？,D,SIB2,SIB3,SIB4,SIB5,
+当GNB侧无法满足下列哪一个值时，会向AMF发起Notification Control？,B,MFBR,GFBR,UE-AMBR,Session-AMBR,
+gnb和gnb、ng-enb使用的是什么接口？,B,X2,Xn,S1,NG,
+在N3隧道传输的QoS流的QFI是由哪个网元分配的？,B,AMF,SMF,UPF,UDM,
+下行调度中，MU-MIMO业务调度优先级最低。,A,正确,错误,,,
+UE-AMBR是统计与UE相关的所有的GBR和non-GBR的QoS的聚合速率。,B,正确,错误,,,
+下行初传数据支持EPF调度算法，下行说法正确的有哪些？,ABC,eff表示用户信道质量,r表示UE的历史传输数据,r（QCI）表示non-GBR业务中调度优先级的加权,,
+小区统计的指标有哪些？,ABC,CCE利用率,RRC建立成功率,PRB利用率,CPU利用率,
+基站级统计的指标是哪个？,A,寻呼资源,用户连接数,PRB利用率,切换成功率,
+一个PDU会话内所有的QoS流都使用相同的N3隧道。,A,正确,错误,,,
+UE使用的QoS流标识，必须不能相同。,B,正确,错误,,,
+NR和EUTRAN互操作移动性管理描述错误的是？,A,切换和重定向双开的情况下，重定向优先,选型忘了,选型忘了,选型忘了,
+SSB的Massive MIMO的场景化，华为设备除了支持default场景外，还支持多少种覆盖场景？,C,12,14,16,18,
+下行导致速率低的原因中和空口质量无关的是哪个？,D,BLER高,MCS低,Rank低,调度次数不满,
+在下行功控中，SS和PBCH可以配置不同的功率偏置值。,B,正确,错误,,,
+5GC用户面业务建立中什么网元和IMS实现互联互通？,C,AMF,SMF,UPF,GNB,
+下列速率匹配功能可以与PDSCH使用相同的OFDM符号资源的有哪些?,BC,TRS ratematch,PDCCH ratematch,SSB ratematch,干扰随机化,
+IMPU是由哪个网元分配的？,D,I-CSCF,p-cscf,s-cscf,ims-UDM,
+掉话的原因有哪些？,ACD,RLC重传次数达到最大,MCS低,传输层错误,radio connection with ue lost,
+小区选择优先级最高的是哪种？,D,信号强度最强的小区,连接态时所在的最后一个小区,stored information cell selection方式选择的小区,RRC release信息中分配的频点信息选择的小区,
+支持闭环功控的信道/信号有哪些？,CD,PBCH,PRACH,PUCCH,PUSCH,
+UE上报的MR消息，但是未收到基站下发的切换命令，可能原因有哪些？,ABCD,目标小区负荷过高,Xn链路故障,上行覆盖不足,目标小区故障,
+下行覆盖能力受哪些因素影响？,ABC,下行发射功率,天线增益,下行路径损耗,上行基站多天线接收分集,
+NSA组网下，LTE侧配置的SSB频点与实际的不一致，则会导致？,B,基站不下发B1事件,UE不上报测量结果,选项忘了,选项忘了,
+上行调度器输出内容,ABCD,调度的用户,MCS,调度的RB数,PRB和TBS,
+上行调度需要输入什么,ABC,BSR,SRI,PHR,忘了,SRI协议38.321说是SRS ID算路损的；也有说是SR的请求指示
+无人机低空覆盖1000km的，以下哪个技术可以提升覆盖,B,F-OFDM,Massive MIMO,大带宽,高调制,
+可以统计CPU利用率的是,BD,UPEU,UMPT,FAN,UBBP,
+速率匹配rate match功能开启后，哪些信道和信号可以开启,ABCD,PDCCH,CSI-RS,TRS,SSB,
+5G用户峰值速率和那些参数有关,ABCD,SSB周期,PDCCH符号数,DMRS符号数,Coreset0的大小,
+自动驾驶最高等级,A,L5,,,,
+PDCCH-configSIB1定义了什么内容,ACD,coreset0相对SSB的偏移,SSB子载波间隔,coreset0占用的RB数,Coreset0占用的符号数,
+哪个字段指示kssb,A,sub-carrieroffset,,,,
+哪个特性算法让sinr初始调整量更准确,D,,,,,UL_PAMC_OPT_SW（上行PAMC优化开关）
+智慧工厂无需远程驾驶，这个题考智慧工厂里面的5G应用，不选远程驾驶，其余如远程控制，监控等应该都选,,,,,,
+关于NR子载波带宽描述，以下说法正确的是哪些？,AB,SSB最大的子载波带宽可以支持240kHz,Sub6G场景下，业务信道最大子载波带宽可以支持60kHz,Above场景下，业务信道最大子载波带宽可以支持240kHz,长格式的PRACH信道可以支持60kHz子载波带宽,如批注，60khz不能做SSB，240khz不能做业务的SCS；长格式支持1.25KHZ和5KHZ
+产生越区覆盖的主要原因有哪些？,bcd,站点太矮，低于周边建筑,天线下倾角设置不合理,基站发射功率过高,街道波导效应,
+上行调度器输出内容,ABCD,调度的用户,MCS,调度的RB数,PRB和TBS,
+上行调度需要输入什么,ABC,BSR,SRI,PHR,忘了,SRI协议38.321说是SRS ID算路损的；也有说是SR的请求指示
+LTE下通过哪个消息下发NR的重选信息,D,SIB22,SIB12,SIB19,SIB24,
+下列有关PUCCH说法正确的是,BD,Nack/ack资源必须为周期,SR资源必须是周期的,SR周期可自适应,CSI资源必须是周期的,BD
+无人机低空覆盖1000km的，以下哪个技术可以提升覆盖,B,F-OFDM,Massive MIMO,大带宽,高调制,
+关于5G PCI规划不正确的是,C,相同PCI复用距离尽量远,相邻同频小区PCI不能相同,相邻小区PCI mod40不同,？,不选mod40
+可以统计CPU利用率的是,BD,UPEU,UMPT,FAN,UBBP,
+速率匹配rate match功能开启后，哪些信道和信号可以开启,ABCD,PDCCH,CSI-RS,TRS,SSB,
+5G用户峰值速率和那些参数有关,ABC,SSB周期,PDCCH符号数,DMRS符号数,Coreset0的大小,
+自动驾驶最高等级,A,L5,,,,
+PDCCH-configSIB1定义了什么内容,ACD,coreset0相对SSB的偏移,SSB子载波间隔,coreset0占用的RB数,Coreset0占用的符号数,
+哪个字段指示kssb,A,sub-carrieroffset,,,,
+fdd和TDD规划的区别,,FDD考虑馈线损耗,FDD低频考虑更大的干扰余量,,,
+哪个特性算法让sinr初始调整量更准确,,UL_PAMC_OPT_SW（上行PAMC优化开关）,,,,
+智慧工厂无需远程驾驶，这个题考智慧工厂里面的5G应用，不选远程驾驶，其余如远程控制，监控等应该都选,,,,,,
+关于NR子载波带宽描述，以下说法正确的是哪些？,AB,SSB最大的子载波带宽可以支持240kHz,Sub6G场景下，业务信道最大子载波带宽可以支持60kHz,Above场景下，业务信道最大子载波带宽可以支持240kHz,长格式的PRACH信道可以支持60kHz子载波带宽,如批注，60khz不能做SSB，240khz不能做业务的SCS；长格式支持1.25KHZ和5KHZ
+产生越区覆盖的主要原因有哪些？,A不选站点太矮的,站点太矮，低于周边建筑,天线下倾角设置不合理,基站发射功率过高,街道波导效应,
+以下那个定时器只用在NSA组网,,T311,,,,
